@@ -1,7 +1,10 @@
 package main
 
-import "goK8sClient/conn"
+import (
+	"goK8sClient/getnamespace"
+)
 
 func main() {
-	conn.Init()
+	// conn.Init()
+	getnamespace.GetNa()
 }

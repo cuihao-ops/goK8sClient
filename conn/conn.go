@@ -1,16 +1,15 @@
 package conn
 
 import (
-	"context"
 	"flag"
 	"fmt"
 
-	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/client-go/kubernetes"
 	"k8s.io/client-go/tools/clientcmd"
 )
 
-func Init() {
+// 入参为空，出参是配置文件的指针
+func Init() *kubernetes.Clientset {
 	var kubeconfig *string
 
 	/*
@@ -38,11 +37,6 @@ func Init() {
 		fmt.Println("成功连接k8s集群...")
 	}
 
-	// 查看当前集群中Pod的总个数
-	pods, err := clientset.CoreV1().Pods("").List(context.TODO(), metav1.ListOptions{})
-	if err != nil {
-		panic(err.Error())
-	}
-	fmt.Printf("There are %d pods in the cluster\n", len(pods.Items))
+	return clientset
 
 }

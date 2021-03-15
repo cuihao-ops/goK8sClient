@@ -8,7 +8,7 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
-func GetNaList() {
+func GetNsList() {
 	nsList, err := conn.Init().CoreV1().Namespaces().List(context.TODO(), metav1.ListOptions{})
 	if err != nil {
 		panic(err.Error())
@@ -16,7 +16,7 @@ func GetNaList() {
 	fmt.Printf("这里有【%d】个namespace在集群中...\n", len(nsList.Items))
 }
 
-func GetNa() {
+func GetNs() {
 	ns1 := "test05"
 	nsGet, err := conn.Init().CoreV1().Namespaces().Get(context.TODO(), ns1, metav1.GetOptions{})
 	if err != nil {

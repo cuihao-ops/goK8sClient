@@ -16,7 +16,7 @@ func Init() *kubernetes.Clientset {
 		运行脚本格式如下：
 		go run .\conn.go config D:\goK8sClient\config
 
-		flag.String说明：第一个是传入的参数，第二个是命令行分隔符，第三个是传入参数的具体值
+		flag.String说明：第一个是传入的参数，第二个是命令行分隔符，第三个是传入参数的具体值,是个默认值，命令行的优先级高
 		flag.String("kubeconfig", "config", "D:\\goK8sClient\\config")
 	*/
 	kubeconfig = flag.String("kubeconfig", "config", "D:\\goK8sClient\\config")

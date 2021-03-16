@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"goK8sClient/conn"
 
+	v1 "k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
@@ -26,5 +27,45 @@ func GetPod(ns string, name string) {
 		fmt.Printf("【%s】pod在【%s】namespace没有找到...\n", name, ns)
 	} else {
 		fmt.Printf("Pod 【%s】的UID为【%s】状态为【%s】创建时间为【%s】...\n", podGet.Name, podGet.UID, podGet.Status.Phase, podGet.CreationTimestamp)
+	}
+}
+
+func CreatePod(ns string, name string) {
+
+	podContent := &v1.Pod{
+		ObjectMeta: metav1.ObjectMeta{
+			Name: name,
+			Labels: map[string]string{
+				"app": "nginx",
+			},
+		},
+		TypeMeta: metav1.TypeMeta{
+			Kind:       "Pod",
+			APIVersion: "v1",
+		},
+		Spec: v1.PodSpec{
+			Containers: []v1.Container{
+				v1.Container{
+					Name:            "nginx",
+					Image:           "registry.loan.com/library/nginx:latest",
+					ImagePullPolicy: "IfNotPresent",
+				}},
+		},
+	}
+	_, err := conn.Init().CoreV1().Pods(ns).Create(context.TODO(), podContent, metav1.CreateOptions{})
+
+	if err != nil {
+		fmt.Println("创建pod失败...")
+	} else {
+		fmt.Println("创建pod成功...")
+	}
+}
+
+func DeletePod(ns string, name string) {
+	err := conn.Init().CoreV1().Pods(ns).Delete(context.TODO(), name, metav1.DeleteOptions{})
+	if err != nil {
+		fmt.Println("删除pod失败...")
+	} else {
+		fmt.Println("删除pod成功...")
 	}
 }

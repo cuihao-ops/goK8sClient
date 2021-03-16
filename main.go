@@ -12,8 +12,8 @@ func main() {
 	// namespace.CreateNs("hello")
 	// namespace.DeleteNs("hello")
 
-	pod.GetPod("test", "xxx-xx-xxx-api-b456cf57b-lg9kp")
+	// pod.GetPod("test", "xxx-xx-xxx-api-b456cf57b-lg9kp")
 	// pod.GetPodList("test")
-	// pod.CreatePod("hello")
-	// pod.DeletePod("hello")
+	// pod.CreatePod("hello", "nginx-test")
+	pod.DeletePod("hello", "nginx-test")
 }

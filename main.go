@@ -1,14 +1,19 @@
 package main
 
+import (
+	"goK8sClient/pod"
+)
+
 func main() {
 	// conn.Init()
-	// getnamespace.GetNs()
-	// getnamespace.GetNsList()
-	// getnamespace.CreateNs("hello")
-	// getnamespace.DeleteNs("hello")
 
-	// getnamespace.GetPd()
-	// getnamespace.GetPdList()
-	// getnamespace.CreatePd("hello")
-	// getnamespace.DeletePd("hello")
+	// namespace.GetNs("test")
+	// namespace.GetNsList()
+	// namespace.CreateNs("hello")
+	// namespace.DeleteNs("hello")
+
+	pod.GetPod("test", "xxx-xx-xxx-api-b456cf57b-lg9kp")
+	// pod.GetPodList("test")
+	// pod.CreatePod("hello")
+	// pod.DeletePod("hello")
 }

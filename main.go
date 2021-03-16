@@ -5,9 +5,8 @@ import "goK8sClient/getnamespace"
 func main() {
 	// conn.Init()
 	// getnamespace.GetNs()
-	// getnamespace.GetNsList()
+	getnamespace.GetNsList()
 	// getnamespace.CreateNs("hello")
-
-	getnamespace.DeleteNs("hello")
+	// getnamespace.DeleteNs("hello")
 
 }

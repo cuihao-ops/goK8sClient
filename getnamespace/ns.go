@@ -15,6 +15,9 @@ func GetNsList() {
 		panic(err.Error())
 	}
 	fmt.Printf("这里有【%d】个namespace在集群中...\n", len(nsList.Items))
+	for _, v := range nsList.Items {
+		fmt.Println(v.ObjectMeta.Name)
+	}
 }
 
 func GetNs() {
@@ -31,6 +34,10 @@ func CreateNs(name string) {
 	ns := &v1.Namespace{
 		ObjectMeta: metav1.ObjectMeta{
 			Name: name,
+		},
+		TypeMeta: metav1.TypeMeta{
+			Kind:       "Namespace",
+			APIVersion: "v1",
 		},
 	}
 

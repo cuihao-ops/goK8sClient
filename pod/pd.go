@@ -2,11 +2,17 @@ package pod
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"goK8sClient/conn"
+	"goK8sClient/util/convert"
 
 	v1 "k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
+)
+
+var (
+	err error
 )
 
 func GetPodList(ns string) {
@@ -52,7 +58,28 @@ func CreatePod(ns string, name string) {
 				}},
 		},
 	}
+
 	_, err := conn.Init().CoreV1().Pods(ns).Create(context.TODO(), podContent, metav1.CreateOptions{})
+
+	if err != nil {
+		fmt.Println("创建pod失败...")
+	} else {
+		fmt.Println("创建pod成功...")
+	}
+}
+
+func CreatePodYaml(fileName string, dirPath string, kind *v1.Pod) {
+
+	data := convert.Init(fileName, dirPath)
+
+	err = json.Unmarshal(data, kind)
+	if err != nil {
+		panic(err.Error())
+	}
+
+	ns := kind.ObjectMeta.Namespace
+
+	_, err = conn.Init().CoreV1().Pods(ns).Create(context.TODO(), kind, metav1.CreateOptions{})
 
 	if err != nil {
 		fmt.Println("创建pod失败...")

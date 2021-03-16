@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    app: nginx
+  name: nginx-test
+  namespace: hello
+spec:
+  containers:
+  - image: registry.loan.com/library/nginx:latest
+    imagePullPolicy: IfNotPresent
+    name: nginx

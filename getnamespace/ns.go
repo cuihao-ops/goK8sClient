@@ -27,8 +27,7 @@ func GetNs() {
 	}
 }
 
-func CreateNs() {
-	name := "hello"
+func CreateNs(name string) {
 	ns := &v1.Namespace{
 		ObjectMeta: metav1.ObjectMeta{
 			Name: name,
@@ -40,5 +39,14 @@ func CreateNs() {
 		fmt.Println("创建namespace失败...")
 	} else {
 		fmt.Println("创建namespace成功...")
+	}
+}
+
+func DeleteNs(name string) {
+	err := conn.Init().CoreV1().Namespaces().Delete(context.TODO(), name, metav1.DeleteOptions{})
+	if err != nil {
+		fmt.Println("删除namespace失败...")
+	} else {
+		fmt.Println("删除namespace成功...")
 	}
 }

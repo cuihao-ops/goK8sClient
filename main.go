@@ -6,6 +6,8 @@ func main() {
 	// conn.Init()
 	// getnamespace.GetNs()
 	// getnamespace.GetNsList()
-	getnamespace.CreateNs()
+	// getnamespace.CreateNs("hello")
+
+	getnamespace.DeleteNs("hello")
 
 }

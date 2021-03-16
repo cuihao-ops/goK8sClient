@@ -1,2 +1,2 @@
 # goK8sClient
-# K8s version 1.18.2
+# k8s version 1.18.2

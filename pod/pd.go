@@ -16,13 +16,13 @@ var (
 )
 
 func GetPodList(ns string) {
-	nsList, err := conn.Init().CoreV1().Pods(ns).List(context.TODO(), metav1.ListOptions{})
+	podList, err := conn.Init().CoreV1().Pods(ns).List(context.TODO(), metav1.ListOptions{})
 	if err != nil {
 		panic(err.Error())
 	}
 
-	fmt.Printf("这里有【%d】个pod在【%s】namespace 中...\n", len(nsList.Items), ns)
-	for _, v := range nsList.Items {
+	fmt.Printf("这里有【%d】个pod在【%s】namespace 中...\n", len(podList.Items), ns)
+	for _, v := range podList.Items {
 		fmt.Println(v.ObjectMeta.Name)
 	}
 }

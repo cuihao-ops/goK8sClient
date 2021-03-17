@@ -1,9 +1,7 @@
 package main
 
 import (
-	"goK8sClient/pod"
-
-	v1 "k8s.io/api/core/v1"
+	"goK8sClient/deployment"
 )
 
 func main() {
@@ -20,5 +18,8 @@ func main() {
 	// pod.DeletePod("hello", "nginx-test")
 
 	// convert.Init("nginx.yaml", &v1.Pod{})
-	pod.CreatePodYaml("nginx.yaml", "D:\\goK8sClient\\yaml\\", &v1.Pod{})
+	// pod.CreatePodYaml("nginx.yaml", "D:\\goK8sClient\\yaml\\", &v1.Pod{})
+
+	// deployment.GetDmList("test")
+	deployment.GetDm("test", "xxx-xxx-xxx-api")
 }
